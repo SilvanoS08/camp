@@ -1,0 +1,6 @@
+{
+  "name": "Horizonte Jardins - Apartamentos Exclusivos",
+  "description": "Landing page de alto padrão para venda de apartamentos modernos com varanda gourmet, lazer completo e localização privilegiada.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
