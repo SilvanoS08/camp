@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BedDouble, Bath, Car, Maximize2, ArrowUpRight, Check, Eye } from 'lucide-react';
-import { APARTMENT_PLANS, INTEREST_FORM_URL, ApartmentPlan } from '../data/content';
+import { APARTMENT_PLANS, INTEREST_FORM_URL, ApartmentPlan, FALLBACK_IMAGES } from '../data/content';
 
 interface ApartmentTypesProps {
   onOpenPhoto?: (src: string, title: string) => void;
@@ -90,6 +90,13 @@ export const ApartmentTypes: React.FC<ApartmentTypesProps> = ({ onOpenPhoto }) =
                   alt={`Perspectiva e planta do apartamento ${plan.name}`}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
+                  onError={(e) => {
+                    const target = e.currentTarget as HTMLImageElement;
+                    const fallback = plan.category === 'duplex' ? FALLBACK_IMAGES.pool : plan.category === 'family' ? FALLBACK_IMAGES.suite : FALLBACK_IMAGES.living;
+                    if (target.src !== fallback) {
+                      target.src = fallback;
+                    }
+                  }}
                 />
                 
                 {/* Highlight text label */}

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { X, ArrowUpRight } from 'lucide-react';
-import { INTEREST_FORM_URL } from '../data/content';
+import { INTEREST_FORM_URL, FALLBACK_IMAGES } from '../data/content';
 
 interface PhotoModalProps {
   isOpen: boolean;
@@ -59,6 +59,12 @@ export const PhotoModal: React.FC<PhotoModalProps> = ({
             src={imageSrc}
             alt={title}
             className="max-h-[70vh] w-auto object-contain mx-auto"
+            onError={(e) => {
+              const target = e.currentTarget as HTMLImageElement;
+              if (target.src !== FALLBACK_IMAGES.facade) {
+                target.src = FALLBACK_IMAGES.facade;
+              }
+            }}
           />
         </div>
 

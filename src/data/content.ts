@@ -1,12 +1,25 @@
+import facadeImg from '../assets/images/facade_exterior_1790202367963.jpg';
+import livingImg from '../assets/images/interior_living_1790202378240.jpg';
+import poolImg from '../assets/images/rooftop_pool_1790202388819.jpg';
+import suiteImg from '../assets/images/master_suite_1790202401043.jpg';
+
 // Form URL provided by the user
 export const INTEREST_FORM_URL = "https://forms.gle/1ufoEyEVYn5CqJim8";
 
-// Images generated
+// Fallback high-resolution architecture images if any binary is omitted during git clone/deploy
+export const FALLBACK_IMAGES = {
+  facade: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80",
+  living: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+  pool: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1600&q=80",
+  suite: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
+};
+
+// Bundled images processed directly by Vite
 export const IMAGES = {
-  facade: "/src/assets/images/facade_exterior_1790202367963.jpg",
-  living: "/src/assets/images/interior_living_1790202378240.jpg",
-  pool: "/src/assets/images/rooftop_pool_1790202388819.jpg",
-  suite: "/src/assets/images/master_suite_1790202401043.jpg",
+  facade: facadeImg,
+  living: livingImg,
+  pool: poolImg,
+  suite: suiteImg,
 };
 
 export interface ApartmentPlan {

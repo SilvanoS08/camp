@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Waves, Coffee, Dumbbell, Zap, Sparkles, ShieldCheck, ArrowUpRight, Eye } from 'lucide-react';
-import { AMENITIES, INTEREST_FORM_URL } from '../data/content';
+import { AMENITIES, INTEREST_FORM_URL, FALLBACK_IMAGES } from '../data/content';
 
 interface AmenitiesProps {
   onOpenPhoto?: (src: string, title: string) => void;
@@ -104,6 +104,13 @@ export const Amenities: React.FC<AmenitiesProps> = ({ onOpenPhoto }) => {
                   alt={amenity.title}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                   loading="lazy"
+                  onError={(e) => {
+                    const target = e.currentTarget as HTMLImageElement;
+                    const fallback = amenity.category === 'lazer' ? FALLBACK_IMAGES.pool : amenity.category === 'bem-estar' ? FALLBACK_IMAGES.suite : FALLBACK_IMAGES.facade;
+                    if (target.src !== fallback) {
+                      target.src = fallback;
+                    }
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#181F1C] via-transparent to-transparent" />
                 

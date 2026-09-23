@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, ChevronDown, CheckCircle2, Shield, Sparkles, MapPin, Eye } from 'lucide-react';
-import { INTEREST_FORM_URL, IMAGES } from '../data/content';
+import { INTEREST_FORM_URL, IMAGES, FALLBACK_IMAGES } from '../data/content';
 
 interface HeroProps {
   onOpenPhoto?: (src: string, title: string) => void;
@@ -104,6 +104,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenPhoto }) => {
                 alt="Fachada do Edifício Horizonte Jardins com arquitetura biofílica contemporânea"
                 className="w-full h-[420px] sm:h-[500px] object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 loading="eager"
+                onError={(e) => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  if (target.src !== FALLBACK_IMAGES.facade) {
+                    target.src = FALLBACK_IMAGES.facade;
+                  }
+                }}
               />
               
               {/* Overlay Dark Gradient */}
